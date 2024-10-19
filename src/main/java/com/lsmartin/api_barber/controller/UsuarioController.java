@@ -7,8 +7,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lsmartin.api_barber.dto.UsuarioDTO;
@@ -39,6 +41,32 @@ public class UsuarioController {
 		
 		List<Usuario> usuarios = usuarioService.buscarTodos();
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
+	}
+	
+	@GetMapping(value = "buscarporid")
+	public ResponseEntity<Usuario> buscarPorId(@RequestParam Long id){
+		
+		Usuario usuario = usuarioService.buscaPorId(id);
+		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
+		
+	}
+	
+	@PostMapping(value = "atualizar")
+	public <T> ResponseEntity<?> atualizarUser(@RequestBody Usuario usuario){
+		
+		
+		if(usuario.getId()== null ) {
+			return new ResponseEntity<String>("Id não pode ser nulo.", HttpStatus.OK);
+			
+		} 
+		Usuario user = usuarioService.atualizarUser(usuario);
+			
+			return new ResponseEntity<Usuario>(user, HttpStatus.OK);
+			
+		
+		
+		
+		
 	}
 
 }
