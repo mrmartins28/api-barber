@@ -47,6 +47,10 @@ public class UsuarioService {
 		return usuarioRepository.saveAndFlush(usuario);
 	}
 	
+	public String deletarUsuarioId(Long id) {
+		 usuarioRepository.deleteById(id);
+		return "Deletado com sucesso!";
+	}
 	
 
 }
