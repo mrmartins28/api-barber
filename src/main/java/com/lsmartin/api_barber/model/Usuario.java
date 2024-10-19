@@ -40,6 +40,10 @@ public class Usuario implements Serializable {
 		this.login = login;
 		this.senha = senha;
 	}
+	
+	public Usuario() {
+		
+	}
 
 	public Long getId() {
 		return id;

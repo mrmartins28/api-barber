@@ -1,5 +1,7 @@
 package com.lsmartin.api_barber.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,11 @@ public class UsuarioService {
 		
 		return usuarioRepository.save(usuario);
 		
+	}
+	
+	public List<Usuario> buscarTodos(){
+		
+		return usuarioRepository.findAll();
 	}
 	
 

@@ -1,8 +1,11 @@
 package com.lsmartin.api_barber.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +26,19 @@ public class UsuarioController {
 		
 		this.usuarioService = usuarioService;
 	}
-	@PostMapping("/salvar")
+	@PostMapping("salvar")
 	public ResponseEntity<Usuario> salvar(@RequestBody UsuarioDTO usuarioDTO){
 		
 		Usuario usuario = usuarioService.salvar(usuarioDTO.transformaEntidade(usuarioDTO));
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
 		
+	}
+	
+	@GetMapping(value = "buscartodos")
+	public ResponseEntity<List<Usuario>> buscarTodos(){
+		
+		List<Usuario> usuarios = usuarioService.buscarTodos();
+		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 
 }
