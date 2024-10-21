@@ -183,6 +183,7 @@
 							<button type="button" class="btn btn-primary"
 								onclick="salvarUser()">Enviar</button>
 							<button type="reset" class="btn btn-primary">Novo</button>
+							<button type="button" class="btn btn-danger" onclick="deletarUser()" >Deletar</button>
 
 						</div>
 					</div>
@@ -206,7 +207,39 @@
 	</div>
 	<script type="text/javascript">
 	
-	
+	function deletarUser() {
+	    // Captura os dados do formulário
+	    
+	    
+	    const usuario = {
+	        id: document.getElementById('id').value,
+	       
+	       
+ 
+	    };
+	    alert( JSON.stringify(usuario));
+	    
+	    if (id != null && id != ''){
+	    
+	    // Faz uma requisição POST para a API Spring Boot
+	    fetch('/api-barber/clientes/deletarporid', {
+	        method: 'DELETE', // Define o método HTTP como POST
+	        headers: {
+	            'Content-Type': 'application/json' // Informa que estamos enviando JSON
+	        },
+	        body: JSON.stringify(usuario) // Converte o objeto `usuario` para JSON
+	    })
+	    .then(response => response.json()) // Converte a resposta em JSON
+	    .then(data => {
+	    	
+	    	
+	        alert('Cliente deletado com sucesso!'); // Exibe uma mensagem de sucesso
+	    })
+	    .catch(error => {
+	        console.error('Erro:', error); // Exibe o erro no console
+	    });
+	    }
+	}
 	
 	function salvarUser() {
 	    // Captura os dados do formulário
