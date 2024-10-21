@@ -2,7 +2,7 @@ package com.lsmartin.api_barber.model;
 
 import java.io.Serializable;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,7 +30,8 @@ public class Usuario implements Serializable {
 	@NonNull
 	private String senha;
 	
-	private boolean isAdmin=false;
+	@JsonProperty
+	private boolean isAdmin;
 	
 	
 

@@ -29,22 +29,22 @@ public class UsuarioController {
 		
 		this.usuarioService = usuarioService;
 	}
-	@PostMapping("salvar")
-	public ResponseEntity<Usuario> salvar(@RequestBody UsuarioDTO usuarioDTO){
+	@PostMapping("/usuarios/salvar")
+	public ResponseEntity<Usuario> salvar(@RequestBody Usuario usuario){
 		
-		Usuario usuario = usuarioService.salvar(usuarioDTO.transformaEntidade(usuarioDTO));
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.CREATED);
+		Usuario usuario2 = usuarioService.salvar(usuario);
+		return new ResponseEntity<Usuario>(usuario2, HttpStatus.CREATED);
 		
 	}
 	
-	@GetMapping(value = "buscartodos")
+	@GetMapping(value = "/usuarios/buscartodos")
 	public ResponseEntity<List<Usuario>> buscarTodos(){
 		
 		List<Usuario> usuarios = usuarioService.buscarTodos();
 		return new ResponseEntity<List<Usuario>>(usuarios, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "buscarporid")
+	@GetMapping(value = "/usuarios/buscarporid")
 	public ResponseEntity<Usuario> buscarPorId(@RequestParam Long id){
 		
 		Usuario usuario = usuarioService.buscaPorId(id);
